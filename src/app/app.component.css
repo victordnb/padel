@@ -1,0 +1,16 @@
+.padel-court {
+    display: grid;
+    grid-template-columns: 1fr ;
+    grid-template-rows: 1fr ;
+    gap: 5px;
+    height: 200px;
+    width: 200px;
+    border: 1px solid black;
+  }
+  
+  .part {
+    border: 1px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
