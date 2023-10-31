@@ -33,6 +33,15 @@ export class AppComponent {
     }
   }
 
+  // app.component.ts
+onEnter(event: KeyboardEvent) {
+  // Llama a la función submit que ya tienes
+  this.submit();
+
+  // Elimina el foco del campo de entrada
+  (event.target as HTMLInputElement).blur();
+}
+
   // Función para mezclar un array
   shuffleArray(array: string[]): string[] {
     for (let i = array.length - 1; i > 0; i--) {
