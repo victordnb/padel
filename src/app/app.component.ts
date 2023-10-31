@@ -7,6 +7,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+  isSubmitted = false;
   inputs: string[] = ['', '', '', ''];
   pairs: string[][] = [];
 
@@ -18,7 +19,7 @@ export class AppComponent {
     for (let i = 1; i < shuffledInputs.length; i += 2) {
       this.pairs.push([shuffledInputs[i], shuffledInputs[i - 1]]);
     }
-  
+    this.isSubmitted = true;
     console.log(this.pairs);
   }
 
@@ -34,7 +35,7 @@ export class AppComponent {
   }
 
   // app.component.ts
-onEnter(event: KeyboardEvent) {
+onEnter(event: any) {
   // Llama a la función submit que ya tienes
   this.submit();
 
