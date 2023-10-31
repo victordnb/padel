@@ -6,7 +6,8 @@
     height: 200px;
     width: 200px;
     border: 1px solid black;
-    background-color: rgba(144, 238, 144, 0.3); /* Añade esta línea */
+    background-color: rgba(144, 238, 144, 0.3);
+
   }
   
   .part {
@@ -27,7 +28,7 @@
   .header-image {
     position: static;
     left: 400px;
-    width: 310px; /* Ajusta esto al tamaño que desees */
-    height: 200px; /* Esto mantendrá la proporción de la imagen */
+    width: 310px; 
+    height: 200px; 
 
   }

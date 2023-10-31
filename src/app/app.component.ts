@@ -22,6 +22,17 @@ export class AppComponent {
     console.log(this.pairs);
   }
 
+  onSubmit() {
+    // Llama a la función submit que ya tienes
+    this.submit();
+  
+    // Elimina el foco de cada campo de entrada
+    let inputs = document.getElementsByTagName('input');
+    for (let i = 0; i < inputs.length; i++) {
+      inputs[i].blur();
+    }
+  }
+
   // Función para mezclar un array
   shuffleArray(array: string[]): string[] {
     for (let i = array.length - 1; i > 0; i--) {
