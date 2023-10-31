@@ -12,21 +12,23 @@ export class AppComponent {
 
   submit() {
     this.pairs = [];
-    let indices = [0, 1, 2, 3];
-
-    // Empareja los inputs dos a dos aleatoriamente
-    while (indices.length > 0) {
-      let randomIndex1 = Math.floor(Math.random() * indices.length);
-      let index1 = indices[randomIndex1];
-      indices.splice(randomIndex1, 1);
-
-      let randomIndex2 = Math.floor(Math.random() * indices.length);
-      let index2 = indices[randomIndex2];
-      indices.splice(randomIndex2, 1);
-
-      this.pairs.push([this.inputs[index1], this.inputs[index2]]);
+    let shuffledInputs = this.shuffleArray(this.inputs);
+    console.log('shuffledInputs', shuffledInputs);
+    
+    for (let i = 1; i < shuffledInputs.length; i += 2) {
+      this.pairs.push([shuffledInputs[i], shuffledInputs[i - 1]]);
     }
-
+  
     console.log(this.pairs);
+  }
+
+  // Función para mezclar un array
+  shuffleArray(array: string[]): string[] {
+    for (let i = array.length - 1; i > 0; i--) {
+      let j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
+    }
+    console.log('array', array);
+    return array;
   }
 }
