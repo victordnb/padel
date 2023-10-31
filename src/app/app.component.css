@@ -18,7 +18,7 @@
   }
 
   .input {
-    border: 1px solid rgb(206, 20, 20);
+    border: 1px solid rgb(134, 122, 12);
   }
 
   .header {
@@ -31,4 +31,15 @@
     width: 310px; 
     height: 200px; 
 
+  }
+
+  .btn.btn-secondary {
+    /**boton de reseteo redondo y con una flecha giratoria */
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+    border: 1px solid rgb(206, 20, 20);
+    position: relative;
+    left: 100px;
+    top: 5px;
   }

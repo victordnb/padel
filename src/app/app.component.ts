@@ -34,6 +34,12 @@ export class AppComponent {
     }
   }
 
+  reset() {
+    this.inputs = ['', '', '', ''];
+    this.pairs = [];
+    this.isSubmitted = false;
+  }
+
   // app.component.ts
 onEnter(event: any) {
   // Llama a la función submit que ya tienes

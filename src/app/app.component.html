@@ -27,6 +27,7 @@
       <input id="input4" type="text" [(ngModel)]="inputs[3]" (keydown.enter)="onEnter($event)" name="input4">
     </div>
     <button type="submit" class="btn btn-primary" (keydown.enter)="onEnter($event)" [disabled]="isSubmitted">Emparejar</button>
+    <button type="button" class="btn btn-secondary" (click)="reset()">R</button>
   </form>
 
   <section *ngIf="isSubmitted">
