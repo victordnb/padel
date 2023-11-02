@@ -33,6 +33,12 @@ export class AppComponent {
       inputs[i].blur();
     }
   }
+  
+  reset() {
+    this.inputs = ['', '', '', ''];
+    this.pairs = [];
+    this.isSubmitted = false;
+  }
 
   // app.component.ts
 onEnter(event: any) {

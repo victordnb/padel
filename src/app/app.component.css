@@ -1,3 +1,29 @@
+/* Estilos para pantallas grandes */
+@media (min-width: 1200px) {
+  .padel-court {
+    display: flex;
+    justify-content: space-around;
+  }
+}
+
+/* Estilos para pantallas medianas */
+@media (min-width: 768px) and (max-width: 1199px) {
+  .padel-court {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+/* Estilos para pantallas pequeñas */
+@media (max-width: 767px) {
+  .padel-court {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
 .padel-court {
     display: grid;
     grid-template-columns: 1fr ;
@@ -18,11 +44,15 @@
   }
 
   .input {
-    border: 1px solid rgb(206, 20, 20);
+    border: 1px solid rgb(134, 122, 12);
   }
 
   .header {
     background-color: skyblue;  
+  }
+
+  .invalid-input {
+    border: 1px solid red;
   }
 
   .header-image {
@@ -31,4 +61,15 @@
     width: 310px; 
     height: 200px; 
 
+  }
+
+  .btn.btn-secondary {
+    /**boton de reseteo redondo y con una flecha giratoria */
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+    border: 1px solid rgb(206, 20, 20);
+    position: relative;
+    left: 100px;
+    top: 5px;
   }
