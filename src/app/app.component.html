@@ -9,26 +9,28 @@
 </header>
 <main>
 
+<button routerLink="/multipista">Generar Pista</button>
+
 <form (submit)="submit()">
-    <div>
-      <label for="input1">Jugador 1:</label>
-      <input id="input1" type="text" [(ngModel)]="inputs[0]" (keydown.enter)="onEnter($event)" name="input1">
-    </div>
-    <div>
-      <label for="input2">Jugador 2:</label>
-      <input id="input2" type="text" [(ngModel)]="inputs[1]" (keydown.enter)="onEnter($event)" name="input2">
-    </div>
-    <div>
-      <label for="input3">Jugador 3:</label>
-      <input id="input3" type="text" [(ngModel)]="inputs[2]" (keydown.enter)="onEnter($event)" name="input3">
-    </div>
-    <div>
-      <label for="input4">Jugador 4:</label>
-      <input id="input4" type="text" [(ngModel)]="inputs[3]" (keydown.enter)="onEnter($event)" name="input4">
-    </div>
-    <button type="submit" class="btn btn-primary" (keydown.enter)="onEnter($event)" [disabled]="isSubmitted">Emparejar</button>
-    <button type="button" class="btn btn-secondary" (click)="reset()">R</button>
-  </form>
+  <div>
+    <label for="input1">Jugador 1:</label>
+    <input id="input1" type="text" [(ngModel)]="inputs[0]" (keydown.enter)="onEnter($event)" name="input1" required #input1="ngModel" [ngClass]="{'invalid-input': input1.invalid && (input1.dirty || input1.touched)}">
+  </div>
+  <div>
+    <label for="input2">Jugador 2:</label>
+    <input id="input2" type="text" [(ngModel)]="inputs[1]" (keydown.enter)="onEnter($event)" name="input2" required #input2="ngModel" [ngClass]="{'invalid-input': input2.invalid && (input2.dirty || input2.touched)}">
+  </div>
+  <div>
+    <label for="input3">Jugador 3:</label>
+    <input id="input3" type="text" [(ngModel)]="inputs[2]" (keydown.enter)="onEnter($event)" name="input3" required #input3="ngModel" [ngClass]="{'invalid-input': input3.invalid && (input3.dirty || input3.touched)}">
+  </div>
+  <div>
+    <label for="input4">Jugador 4:</label>
+    <input id="input4" type="text" [(ngModel)]="inputs[3]" (keydown.enter)="onEnter($event)" name="input4" required #input4="ngModel" [ngClass]="{'invalid-input': input4.invalid && (input4.dirty || input4.touched)}">
+  </div>
+  <button type="submit" class="btn btn-primary" (keydown.enter)="onEnter($event)" [disabled]="input1.invalid || input2.invalid || input3.invalid || input4.invalid || isSubmitted">Emparejar</button>
+  <button *ngIf="isSubmitted" type="button" class="btn btn-secondary" (click)="reset()">R</button>
+</form>
 
   <section *ngIf="isSubmitted">
     <h2>Pista de Padel</h2>
