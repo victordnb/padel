@@ -1,5 +1,7 @@
 // app.component.ts
 import { Component } from '@angular/core';
+import { SharedService } from './shared.service';
+
 
 @Component({
   selector: 'app-root',
@@ -7,25 +9,17 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  isSubmitted = false;
-  inputs: string[] = ['', '', '', ''];
-  pairs: string[][] = [];
 
-  submit() {
-    this.pairs = [];
-    let shuffledInputs = this.shuffleArray(this.inputs);
-    console.log('shuffledInputs', shuffledInputs);
-    
-    for (let i = 1; i < shuffledInputs.length; i += 2) {
-      this.pairs.push([shuffledInputs[i], shuffledInputs[i - 1]]);
-    }
-    this.isSubmitted = true;
-    console.log(this.pairs);
-  }
+  constructor(public sharedService: SharedService) { }
+  
 
   onSubmit() {
-    // Llama a la función submit que ya tienes
-    this.submit();
+    this.sharedService.submit()
+  .subscribe(response => {
+    if (response !== null) {
+      console.log(response);
+    }
+  });
   
     // Elimina el foco de cada campo de entrada
     let inputs = document.getElementsByTagName('input');
@@ -34,20 +28,26 @@ export class AppComponent {
     }
   }
   
+  
   reset() {
-    this.inputs = ['', '', '', ''];
-    this.pairs = [];
-    this.isSubmitted = false;
+    this.sharedService.inputs = ['', '', '', ''];
+    this.sharedService.pairs = [];
+    this.sharedService.isSubmitted = false;
   }
 
   // app.component.ts
-onEnter(event: any) {
+  onEnter(event: any) {
   // Llama a la función submit que ya tienes
-  this.submit();
+  this.sharedService.submit()
+  .subscribe(response => {
+    if (response !== null) {
+      console.log(response);
+    }
+  });
 
   // Elimina el foco del campo de entrada
   (event.target as HTMLInputElement).blur();
-}
+  }
 
   // Función para mezclar un array
   shuffleArray(array: string[]): string[] {

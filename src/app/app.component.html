@@ -11,31 +11,34 @@
 
 <button routerLink="/multipista">Generar Pista</button>
 
-<form (submit)="submit()">
+<form (submit)="onSubmit()">
   <div>
     <label for="input1">Jugador 1:</label>
-    <input id="input1" type="text" [(ngModel)]="inputs[0]" (keydown.enter)="onEnter($event)" name="input1" required #input1="ngModel" [ngClass]="{'invalid-input': input1.invalid && (input1.dirty || input1.touched)}">
+    <input id="input1" type="text" [(ngModel)]="sharedService.inputs[0]" (keydown.enter)="onEnter($event)" name="input1" required #input1="ngModel" [ngClass]="{'invalid-input': input1.invalid && (input1.dirty || input1.touched)}">
   </div>
   <div>
     <label for="input2">Jugador 2:</label>
-    <input id="input2" type="text" [(ngModel)]="inputs[1]" (keydown.enter)="onEnter($event)" name="input2" required #input2="ngModel" [ngClass]="{'invalid-input': input2.invalid && (input2.dirty || input2.touched)}">
+    <input id="input2" type="text" [(ngModel)]="sharedService.inputs[1]" (keydown.enter)="onEnter($event)" name="input2" required #input2="ngModel" [ngClass]="{'invalid-input': input2.invalid && (input2.dirty || input2.touched)}">
   </div>
   <div>
     <label for="input3">Jugador 3:</label>
-    <input id="input3" type="text" [(ngModel)]="inputs[2]" (keydown.enter)="onEnter($event)" name="input3" required #input3="ngModel" [ngClass]="{'invalid-input': input3.invalid && (input3.dirty || input3.touched)}">
+    <input id="input3" type="text" [(ngModel)]="sharedService.inputs[2]" (keydown.enter)="onEnter($event)" name="input3" required #input3="ngModel" [ngClass]="{'invalid-input': input3.invalid && (input3.dirty || input3.touched)}">
   </div>
   <div>
     <label for="input4">Jugador 4:</label>
-    <input id="input4" type="text" [(ngModel)]="inputs[3]" (keydown.enter)="onEnter($event)" name="input4" required #input4="ngModel" [ngClass]="{'invalid-input': input4.invalid && (input4.dirty || input4.touched)}">
-  </div>
-  <button type="submit" class="btn btn-primary" (keydown.enter)="onEnter($event)" [disabled]="input1.invalid || input2.invalid || input3.invalid || input4.invalid || isSubmitted">Emparejar</button>
-  <button *ngIf="isSubmitted" type="button" class="btn btn-secondary" (click)="reset()">R</button>
+    <input id="input4" type="text" [(ngModel)]="sharedService.inputs[3]" (keydown.enter)="onEnter($event)" name="input4" required #input4="ngModel" [ngClass]="{'invalid-input': input4.invalid && (input4.dirty || input4.touched)}">  </div>
+  <button type="submit" class="btn btn-primary" (keydown.enter)="onEnter($event)" [disabled]="input1.invalid || input2.invalid || input3.invalid || input4.invalid || sharedService.isSubmitted">Emparejar</button>  <button *ngIf="sharedService.isSubmitted" type="button" class="btn btn-secondary" (click)="reset()">R</button>
 </form>
 
-  <section *ngIf="isSubmitted">
+<div *ngIf="sharedService.saveStatus === 'initial'">Por favor, envía tus datos.</div>
+<div *ngIf="sharedService.saveStatus === 'saving'">Guardando datos...</div>
+<div *ngIf="sharedService.saveStatus === 'success'">Los datos se han guardado correctamente.</div>
+<div *ngIf="sharedService.saveStatus === 'error'">Hubo un error al guardar los datos.</div>
+
+<section *ngIf="sharedService.isSubmitted">
     <h2>Pista de Padel</h2>
     <div class="padel-court">
-      <div class="part" *ngFor="let pair of pairs; let i = index">
+      <div class="part" *ngFor="let pair of sharedService.pairs; let i = index">
         <p> {{ pair[0] }} - {{ pair[1] }}</p>
       </div>
     </div>
