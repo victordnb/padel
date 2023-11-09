@@ -51,6 +51,8 @@ export class AppComponent {
 
   // Función para mezclar un array
   shuffleArray(array: string[]): string[] {
+    console.warn("se esta usando el Shuffle del app.component.ts");
+    ('array');
     for (let i = array.length - 1; i > 0; i--) {
       let j = Math.floor(Math.random() * (i + 1));
       [array[i], array[j]] = [array[j], array[i]];

@@ -12,6 +12,7 @@ export class SharedService {
   isFirstClick = true;
   inputs: string[] = ['', '', '', ''];
   pairs: string[][] = [];
+  data: any = {};
   constructor(private http: HttpClient) { }
 
   isSubmitted = false;
@@ -26,9 +27,11 @@ export class SharedService {
       this.pairs.push([shuffledInputs[i], shuffledInputs[i - 1]]);
     }
     this.isSubmitted = true;
-    console.log(this.pairs);
+    console.error(this.pairs);
 
-    return this.http.post('http://localhost:3000/api/players', this.inputs).pipe(
+    this.data.pairs = this.pairs;
+    console.log('data', this.data);
+    return this.http.post('http://localhost:3000/api/players', this.data).pipe(
       tap(() => {
         this.saveStatus = 'success';
       }),
@@ -47,6 +50,8 @@ reset() {
 
 
   private shuffleArray(array: any[]) {
+    console.warn("se esta usando el Shuffle del shared.service.ts");  
+
     for (let i = array.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
       [array[i], array[j]] = [array[j], array[i]];
