@@ -30,8 +30,14 @@ export class SharedService {
     console.error(this.pairs);
 
     this.data.pairs = this.pairs;
-    console.log('data', this.data);
-    return this.http.post('http://localhost:3000/api/players', this.data).pipe(
+    const data = {
+      array1: this.pairs[0],
+      array2: this.pairs[1]
+    };
+  
+    console.log('data', data);
+  
+    return this.http.post('http://localhost:3000/api/players', data).pipe(
       tap(() => {
         this.saveStatus = 'success';
       }),
