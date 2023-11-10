@@ -1,0 +1,28 @@
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+mat-calendar .mat-calendar-body-cell.special-date .mat-calendar-body-cell-content::after {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  position: absolute;
+  bottom: 4px;
+  left: calc(50% - 3px);
+  background: red !important;
+}
+.mat-form-field {
+    width: 100%;
+  }
+  
+  .mat-calendar {
+    background-color: #fafafa;
+  }
+  
+  .mat-calendar-body-cell-content {
+    color: #3f51b5;
+  }
+  
+  .mat-calendar-body-selected {
+    background-color: #3f51b5;
+    color: white;
+  }

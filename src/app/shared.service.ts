@@ -4,6 +4,8 @@ import { catchError } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { tap } from 'rxjs/operators';
 
+import { Observable } from 'rxjs';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -48,11 +50,16 @@ export class SharedService {
       })
     );
   }
-reset() {
-  this.inputs = ['', '', '', ''];
-  this.pairs = [];
-  this.isSubmitted = false;
-}
+
+  getDatesWithData(): Observable<Date[]> {
+    return this.http.get<Date[]>(`http://localhost:3000/api/players/datesWithData`);
+  }
+
+  reset() {
+    this.inputs = ['', '', '', ''];
+    this.pairs = [];
+    this.isSubmitted = false;
+  }
 
 
   private shuffleArray(array: any[]) {
@@ -63,6 +70,17 @@ reset() {
       [array[i], array[j]] = [array[j], array[i]];
     }
     return array;
+  }
+
+  getMatchedPlayers(date: string) {
+    console.log('date getMatchedPlayers shared..', date);
+    return this.http.get(`http://localhost:3000/api/players/matches?date=${date}`).pipe(
+      tap(data => console.log(data)),
+      catchError(error => {
+        console.error('Error:', error);
+        return of(null);
+      })
+    );
   }
 
   

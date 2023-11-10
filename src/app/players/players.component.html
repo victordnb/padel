@@ -1,0 +1,16 @@
+
+<h2 style="padding-top: 30px;"><p>Buscar partido anterior</p></h2>
+
+<mat-form-field appearance="fill">
+    <mat-label>Fechas con partidos: </mat-label>
+    <input matInput [matDatepicker]="picker" (dateChange)="getMatchedPlayers($event)">
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker [dateClass]="dateClass"></mat-datepicker>
+</mat-form-field>
+
+<div *ngFor="let player of players">
+    <!-- <h2>{{ player._id }}</h2> -->
+    <h2> Partido: {{ player._id }}</h2>
+    <p>Pareja A: {{ player.array1.join(', ') }}</p>
+    <p>Pareja B: {{ player.array2.join(', ') }}</p>
+</div>

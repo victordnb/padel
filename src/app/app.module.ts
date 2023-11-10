@@ -8,6 +8,18 @@ import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule, Routes } from '@angular/router';
 import { SharedService } from './shared.service';
+import { PlayersComponent } from './players/players.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import {Component} from '@angular/core';
+
+
+
+
 
 const routes: Routes = [
   { path: 'multip', component: SharedService }, 
@@ -16,13 +28,19 @@ const routes: Routes = [
 @NgModule({
   declarations: [
     AppComponent,
-    MultipistaComponent
+    MultipistaComponent,
+    PlayersComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     AppRoutingModule ,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatFormFieldModule,
+    MatInputModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
