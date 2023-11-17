@@ -39,7 +39,7 @@ export class SharedService {
   
     console.log('data', data);
   
-    return this.http.post('http://localhost:3000/api/players', data).pipe(
+    return this.http.post('https://padelback20.onrender.com/api/players', data).pipe(
       tap(() => {
         this.saveStatus = 'success';
       }),
@@ -52,7 +52,7 @@ export class SharedService {
   }
 
   getDatesWithData(): Observable<Date[]> {
-    return this.http.get<Date[]>(`http://localhost:3000/api/players/datesWithData`);
+    return this.http.get<Date[]>(`https://padelback20.onrender.com/api/players/datesWithData`);
   }
 
   reset() {
@@ -74,7 +74,7 @@ export class SharedService {
 
   getMatchedPlayers(date: string) {
     console.log('date getMatchedPlayers shared..', date);
-    return this.http.get(`http://localhost:3000/api/players/matches?date=${date}`).pipe(
+    return this.http.get(`https://padelback20.onrender.com/api/players/matches?date=${date}`).pipe(
       tap(data => console.log(data)),
       catchError(error => {
         console.error('Error:', error);
