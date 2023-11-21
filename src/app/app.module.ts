@@ -16,6 +16,9 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import {Component} from '@angular/core';
+import { HeaderComponent } from './header/header.component';
+import { RegisterComponent } from './register/register.component';
+import { MainComponent } from './main/main.component';
 
 
 
@@ -29,7 +32,10 @@ const routes: Routes = [
   declarations: [
     AppComponent,
     MultipistaComponent,
-    PlayersComponent
+    PlayersComponent,
+    HeaderComponent,
+    RegisterComponent,
+    MainComponent
   ],
   imports: [
     BrowserModule,

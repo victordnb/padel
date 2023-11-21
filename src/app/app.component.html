@@ -1,16 +1,16 @@
 
-<header>
+<!-- <header>
     <div class="logo">
       <img class="header-image" src="assets\images\headimage.jpg" alt="Padel Barra">
         <h1>Padel Barra</h1>
         <h2>Emparejador aleatorio</h2>
         <hr>
     </div>
-</header>
+</header> -->
+<app-header></app-header>
+
+
 <main>
-
-<button routerLink="/multipista">Generar Pista</button>
-
 <form (submit)="onSubmit()">
   <div>
     <label for="input1">Jugador 1:</label>
@@ -45,6 +45,9 @@
   </section>
 
   
-  <app-players></app-players>
-
+  <router-outlet>
+  </router-outlet>
+  
 </main>
+
+<app-players></app-players>

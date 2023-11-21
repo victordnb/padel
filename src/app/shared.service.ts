@@ -38,7 +38,13 @@ export class SharedService {
     };
   
     console.log('data', data);
-  
+
+
+    //local:
+    //return this.http.post('http://localhost:3000/api/players', data).pipe(
+    //online: 
+    //return this.http.post('https://padelback20.onrender.com/api/players', data).pipe(
+
     return this.http.post('https://padelback20.onrender.com/api/players', data).pipe(
       tap(() => {
         this.saveStatus = 'success';
@@ -82,6 +88,4 @@ export class SharedService {
       })
     );
   }
-
-  
 }
