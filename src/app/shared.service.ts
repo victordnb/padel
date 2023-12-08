@@ -88,4 +88,19 @@ export class SharedService {
       })
     );
   }
+
+  register(formData: any) {
+    console.log('formData', formData);
+    return this.http.post('https://padelback20.onrender.com/api/register', formData).pipe(
+      tap(() => {
+        console.log('Registro exitoso');
+      }),
+      catchError(error => {
+        console.error('Error (aun no esta impentado en el backend!):', error);
+        return of(null);
+      })
+    );
+  }
+
+
 }

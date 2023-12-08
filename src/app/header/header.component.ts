@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from '../auth.service'; // Asegúrate de que la ruta sea correcta
 
 @Component({
   selector: 'app-header',
@@ -7,10 +8,14 @@ import { Router } from '@angular/router';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent {
-  constructor(private router: Router) {}
+
+  constructor(private router: Router, private authService: AuthService) { }
 
   goToRegister() {
-    console.log('Navigating to register');
-    this.router.navigate(['/register']);
+    if (this.authService.isLoggedIn()) {
+      this.router.navigate(['/mi-perfil']);
+    } else {
+      this.router.navigate(['/register']);
+    }
   }
 }
