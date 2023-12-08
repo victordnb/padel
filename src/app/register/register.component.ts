@@ -1,6 +1,8 @@
 // register.component.ts
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { SharedService } from '../shared.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -8,10 +10,23 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent {
-  onSubmit(form: NgForm) {
-    if (form.valid) {
-      // Aquí es donde enviarías los datos a tu servicio
-      console.log(form.value);
+
+  constructor(public sharedService: SharedService, private router: Router) { }
+
+  onSubmit(registerForm: NgForm) {
+    if (registerForm.valid) {
+      const formData = registerForm.value;
+      console.log('formData', registerForm);
+
+      this.sharedService.register(formData).subscribe((response: any) => {
+        if (response) {
+          alert('Registro exitoso. Haz clic en Aceptar para continuar.');
+          this.router.navigate(['/']);
+        }
+        console.log('response --> ', response);
+      }, error => {
+        console.error('Error:', error);
+      });
     }
   }
 }
