@@ -67,3 +67,17 @@ button .login-container {
   margin-top: 20px;
   position: fixed;
 }
+
+:host {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+  background-color: #75b4e7;
+}
+
+.register-button {
+  margin-bottom: 20px;
+}
