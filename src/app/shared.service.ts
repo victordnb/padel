@@ -3,6 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { catchError } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { tap } from 'rxjs/operators';
+import { HttpHeaders } from '@angular/common/http';
+
 
 import { Observable } from 'rxjs';
 
@@ -57,6 +59,13 @@ export class SharedService {
     );
   }
 
+  getSomeData() {
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+  
+    return this.http.get('http://localhost:3000/api/some-data', { headers });
+  }
+
   getDatesWithData(): Observable<Date[]> {
     return this.http.get<Date[]>(`https://padelback20.onrender.com/api/players/datesWithData`);
   }
@@ -91,7 +100,8 @@ export class SharedService {
 
   register(formData: any) {
     console.log('formData', formData);
-    return this.http.post('https://padelback20.onrender.com/api/register', formData).pipe(
+    //return this.http.post('https://padelback20.onrender.com/api/register', formData).pipe(
+    return this.http.post('http://localhost:3000/api/register', formData).pipe(
       tap(() => {
         console.log('Registro exitoso');
       }),
@@ -103,12 +113,13 @@ export class SharedService {
   }
 
   login(user: { username: string, password: string }): Observable<any> {
-    return this.http.post(`http://localhost:3000/api/login`, user).pipe(
-      tap((response: any) => {
-        localStorage.setItem('token', response.token); //!todo: hacer un middleware para verificar el token
-      })
-    );
-  }
+    //return this.http.post(`https://padelback20.onrender.com/api/login`, user).pipe(
+      return this.http.post(`http://localhost:3000/api/login`, user, { responseType: 'text' }).pipe(
+        tap((response: string) => {
+          localStorage.setItem('token', response);
+        })
+      );
+    }
 
   getToken(): string {
     return localStorage.getItem('token') || '';
