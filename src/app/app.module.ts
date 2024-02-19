@@ -19,6 +19,12 @@ import {Component} from '@angular/core';
 import { HeaderComponent } from './header/header.component';
 import { RegisterComponent } from './register/register.component';
 import { MainComponent } from './main/main.component';
+import { LoginComponent } from './login/login.component';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptor } from './auth.interceptor';
+import { PanelusuarioComponent } from './panelusuario/panelusuario.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { RandomMatchComponent } from './random-match/random-match.component';
 
 
 
@@ -35,7 +41,10 @@ const routes: Routes = [
     PlayersComponent,
     HeaderComponent,
     RegisterComponent,
-    MainComponent
+    MainComponent,
+    LoginComponent,
+    PanelusuarioComponent,
+    RandomMatchComponent
   ],
   imports: [
     BrowserModule,
@@ -47,8 +56,11 @@ const routes: Routes = [
     MatNativeDateModule,
     MatFormFieldModule,
     MatInputModule,
+    ReactiveFormsModule
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
