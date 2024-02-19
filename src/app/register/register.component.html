@@ -1,19 +1,24 @@
 <!-- register.component.html -->
 <div class="register">
   <h1>Bienvenidos, ¡regístrate!</h1> 
-  <form (ngSubmit)="onSubmit(registerForm)" #registerForm="ngForm">
-    
+  <form (ngSubmit)="onSubmit()" #registerForm="ngForm">
+
     <label for="email">Email</label>
-    <input type="email" id="email" ngModel name="email" required>
+    <input type="email" id="email" ngModel name="email" email required #email="ngModel" [class.is-invalid]="email.invalid && email.touched">
+    <div *ngIf="email.invalid && email.touched" class="error-message">
+      Por favor, introduce un correo electrónico válido.
+    </div>
     
     <label for="username">Nombre de usuario</label>
     <input type="text" id="username" ngModel name="username" autocomplete="off" required>
     
     <label for="password">Contraseña</label>
-    <input type="password" id="password" ngModel name="password" required>
+<input type="password" id="password" ngModel name="password" required pattern=".{4,12}" #password="ngModel" [class.is-invalid]="password.invalid && password.touched">
+<div *ngIf="password.invalid && password.touched" class="error-message">
+  La contraseña debe tener entre 4 y 12 caracteres.
+</div>
     
-    
-    <button type="submit">Registrarse</button>
-  </form>    
+<button type="submit" [disabled]="registerForm.invalid">Registrarse</button>
+</form>  
 </div> 
 

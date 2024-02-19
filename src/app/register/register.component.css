@@ -37,6 +37,11 @@ form {
     border-radius: 4px;
     cursor: pointer;
   }
+
+  button:disabled {
+    background-color: #ccc; /* gris */
+    cursor: not-allowed;
+  }
   
   button:hover {
     background-color: #45a049; /* verde oscuro */
