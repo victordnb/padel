@@ -91,7 +91,8 @@ export class SharedService {
 
   register(formData: any) {
     console.log('formData', formData);
-    return this.http.post('https://padelback20.onrender.com/api/register', formData).pipe(
+    //return this.http.post('https://padelback20.onrender.com/api/register', formData).pipe(
+    return this.http.post('http://localhost:3000/api/register', formData).pipe(
       tap(() => {
         console.log('Registro exitoso');
       }),
@@ -103,7 +104,8 @@ export class SharedService {
   }
 
   login(user: { username: string, password: string }): Observable<any> {
-    return this.http.post(`https://padelback20.onrender.com/api/login`, user).pipe(
+    //return this.http.post(`https://padelback20.onrender.com/api/login`, user).pipe(
+    return this.http.post(`http://localhost:3000/api/login`, user).pipe(
       tap((response: any) => {
         localStorage.setItem('token', response.token); //!todo: hacer un middleware para verificar el token
       })
