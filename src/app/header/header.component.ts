@@ -18,4 +18,17 @@ export class HeaderComponent {
       this.router.navigate(['/register']);
     }
   }
+
+  login() {
+    // Aquí puedes agregar la lógica que necesites antes de redirigir al usuario
+    // Por ejemplo, podrías abrir un modal de inicio de sesión
+
+    // Redirige al usuario a la página de inicio de sesión
+    this.router.navigate(['/login']);
+  }
+
+  goToRandomMatch() {
+    // Redirige al usuario a la página de Partido Aleatorio
+    this.router.navigate(['/random-match']);
+  }
 }

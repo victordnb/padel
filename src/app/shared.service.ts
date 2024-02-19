@@ -102,5 +102,16 @@ export class SharedService {
     );
   }
 
+  login(user: { username: string, password: string }): Observable<any> {
+    return this.http.post(`http://localhost:3000/api/login`, user).pipe(
+      tap((response: any) => {
+        localStorage.setItem('token', response.token); //!todo: hacer un middleware para verificar el token
+      })
+    );
+  }
+
+  getToken(): string {
+    return localStorage.getItem('token') || '';
+  }
 
 }

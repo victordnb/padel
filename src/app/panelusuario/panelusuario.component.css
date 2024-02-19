@@ -1,0 +1,52 @@
+/* panel-usuario.component.css */
+h1 {
+    color: #333;
+    font-size: 2em;
+  }
+  
+  .level-1, .level-2 {
+    margin-bottom: 20px;
+  }
+  
+  .level-1 h1, .level-2 h2 {
+    color: #007BFF;
+  }
+  
+  .level-2 {
+    margin-top: 20px;
+  }
+
+  .panel-usuario {
+    border: 1px solid #007BFF;
+    padding: 20px;
+    margin-top: 20px;
+    background-color: #9dcea9;
+  }
+  
+  button {
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+  }
+  
+  form {
+    margin-top: 20px;
+  }
+  
+  form input {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+  }
+  
+  form button {
+    background-color: #28a745;
+  }

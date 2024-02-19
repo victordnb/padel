@@ -1,0 +1,35 @@
+<!-- panel-usuario.component.html -->
+<h1 class="panel-usuario">panel de usuario</h1>
+<div *ngIf="player">
+    <div class="level-1">
+      <p>{{ player.name }} {{ player.surname }}</p>
+      <p>Ciudad: {{ player.city }}</p>
+      <p>Edad: {{ player.age }}</p>
+    </div>
+  
+    <div class="level-2">
+      <h2>Datos destacados</h2>
+      <p>Nivel: {{ player.level }}</p>
+      <p>Partidos jugados:</p>
+      <ul>
+        <li *ngFor="let match of player.matches; let i = index">
+          <h3><strong>Fecha: {{ match.date | date:'shortDate' }}</strong></h3>
+          <p>Jugadores: {{ match.players.join(', ') }}</p>
+          <button (click)="toggleMatchForm(i)">Editar Resultado</button>
+          <form *ngIf="showMatchForm[i]" (submit)="updateMatchResult(i)">
+            <input [(ngModel)]="match.result" name="result" placeholder="Resultado del Partido">
+            <button type="submit">Actualizar Resultado</button>
+          </form>
+        </li>
+      </ul>
+    </div>
+
+    <button (click)="toggleForm()">Completar/Editar Datos</button>
+
+    <form *ngIf="showForm" [formGroup]="playerForm" (ngSubmit)="updateProfile()">
+    <input formControlName="age" placeholder="Edad">
+    <input formControlName="city" placeholder="Ciudad">
+    <input formControlName="level" placeholder="Nivel">
+    <button type="submit">Actualizar Perfil</button>
+    </form>
+  </div>
