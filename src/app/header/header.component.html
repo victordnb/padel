@@ -1,20 +1,17 @@
 <div class="header">
   <div class="logo-banner">
-    <!-- <img src=".\assets\images\logovic.png" alt="Logo">
-    <h1 class="app-title">Padel Barra</h1>
-    <img class="profile-pic" (click)="goToRegister()" routerLink="/register" src=".\assets\images\login.png" alt="Profile Pic"> -->
     <div class="dropdown">
       <img src="\assets\images\login.png" class="dropbtn">
       <div class="dropdown-content">
-        <a class="login" routerLink="/login">Iniciar sesión</a>
-        <a class="register" routerLink="/register">Registrarse</a>
+        <a class="logout" (click)="logout()">Cerrar sesión</a> <!-- Cambiado aquí -->
       </div>
     </div>
+    <span class="welcome-message" *ngIf="username">Bienvenido, {{username}}</span>
   </div>
   <nav>
     <ul>
       <li><a routerLink="/mi-perfil">Mi cuenta</a></li>
-      <li><a routerLink="/random-match">Partido Aleatorio</a></li> <!-- Nuevo enlace aquí -->
+      <li><a routerLink="/random-match">Partido Aleatorio</a></li>
       <li><a href="#">Mis partidos</a></li>
       <li><a href="#">Centros</a></li>
     </ul>

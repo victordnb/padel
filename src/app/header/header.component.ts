@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../auth.service'; // Asegúrate de que la ruta sea correcta
 
@@ -7,9 +7,20 @@ import { AuthService } from '../auth.service'; // Asegúrate de que la ruta sea 
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnInit {
+  username: string | null = '';
 
   constructor(private router: Router, private authService: AuthService) { }
+
+  ngOnInit() {
+    this.username = localStorage.getItem('user');
+  }
+
+  logout() {
+    localStorage.clear(); // Borra todo el almacenamiento local
+    location.reload(); // Recarga la página
+  }
+
 
   goToRegister() {
     if (this.authService.isLoggedIn()) {

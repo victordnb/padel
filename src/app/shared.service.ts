@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { catchError } from 'rxjs/operators';
-import { of } from 'rxjs';
+import { of, throwError } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { HttpHeaders } from '@angular/common/http';
 
@@ -113,16 +113,36 @@ export class SharedService {
   }
 
   login(user: { username: string, password: string }): Observable<any> {
-    //return this.http.post(`https://padelback20.onrender.com/api/login`, user).pipe(
-      return this.http.post(`https://padelback20.onrender.com/api/login`, user, { responseType: 'text' }).pipe(
-        tap((response: string) => {
-          localStorage.setItem('token', response);
-        })
-      );
-    }
+    //local:
+    //return this.http.post(`http://localhost:3000/api/login`, user, { responseType: 'json' }).pipe(  
+      return this.http.post(`http://localhost:3000/api/login`, user, { responseType: 'json' }).pipe(
+      tap((response: any) => {
+        localStorage.setItem('token', response.token);
+        localStorage.setItem('user', JSON.stringify(response.user));
+      })
+    );
+  } 
 
   getToken(): string {
     return localStorage.getItem('token') || '';
+  }
+
+  setTokenToUser(token: string){
+    const user = localStorage.getItem('user');
+  
+    if (!user || !token) {
+      console.error('User or token is missing');
+      return;
+    }
+  
+    const url = `http://localhost:3000/api/login/users/${user}`;
+  
+    return this.http.post(url, { token }).pipe(
+      catchError(error => {
+        console.error('Error in setTokenToUser:', error);
+        return throwError(error);
+      })
+    );
   }
 
 }

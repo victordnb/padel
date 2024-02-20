@@ -7,6 +7,20 @@
     display: flex;
     justify-content: flex-end;
   }
+
+  .welcome-message {
+    color: rgb(16, 107, 31);
+    margin-left: 10px;
+    font-size: 1.25rem;
+    font-weight: bold;
+  }
+
+  .logout {
+    color: red;
+    border: 1px solid red;
+    padding: 10px;
+    display: block;
+  }
   
   .header nav ul li {
     float: left;

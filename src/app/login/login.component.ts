@@ -16,19 +16,31 @@ export class LoginComponent {
   constructor(private sharedService: SharedService, private router: Router) { 
     this.username = '';
     this.password = '';
+    console.log('entra en el constructor del login.component.ts');
   }
-
+ 
   onSubmit() {
     const user = {
       username: this.username,
       password: this.password
     };
   
-    this.sharedService.login(user).subscribe((response: string) => {
-      if (response) {
+    this.sharedService.login(user).subscribe((response: any) => {
+      console.log('response:', response);
+      if (response && response.token && response.user) {
         // Almacenar el token en el almacenamiento local
-        localStorage.setItem('token', response);
-  
+        localStorage.setItem('token', response.token);
+        localStorage.setItem('user', JSON.stringify(response.user));
+
+        //guardar el token en el sharedService al usuario logueado:
+        try{
+          console.log('entra en el try del setTokenToUser');
+          this.sharedService.setTokenToUser(response.token);
+
+        } catch (error) {
+          console.log('entra en el catch del setTokenToUser');
+          console.log('error en el setTokenToUser, no se ha podido guardar', error);
+        }
         alert('Inicio de sesión exitoso. Serás redirigido a la página de inicio.');
         this.router.navigate(['/main']);
       } else {
