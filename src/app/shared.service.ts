@@ -115,7 +115,7 @@ export class SharedService {
   login(user: { username: string, password: string }): Observable<any> {
     //local:
     //return this.http.post(`http://localhost:3000/api/login`, user, { responseType: 'json' }).pipe(  
-      return this.http.post(`http://localhost:3000/api/login`, user, { responseType: 'json' }).pipe(
+      return this.http.post(`https://padelback20.onrender.com/api/login`, user, { responseType: 'json' }).pipe(
       tap((response: any) => {
         localStorage.setItem('token', response.token);
         localStorage.setItem('user', JSON.stringify(response.user));
@@ -135,8 +135,9 @@ export class SharedService {
       return;
     }
   
-    const url = `http://localhost:3000/api/login/users/${user}`;
+    const url = `https://padelback20.onrender.com/api/login/users/${user}`;
   
+    
     return this.http.post(url, { token }).pipe(
       catchError(error => {
         console.error('Error in setTokenToUser:', error);
