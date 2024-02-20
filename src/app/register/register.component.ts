@@ -25,7 +25,7 @@ export class RegisterComponent {
       this.sharedService.register(formData).subscribe((response: any) => {
         if (response) {
           alert('Registro exitoso. Haz clic en Aceptar para continuar.');
-          this.router.navigate(['/']);
+          this.router.navigate(['/login']); // Redirige al usuario a la página de inicio de sesión
         }
         console.log('response --> ', response);
       }, error => {
