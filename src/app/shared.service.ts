@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { catchError } from 'rxjs/operators';
+import { catchError, map } from 'rxjs/operators';
 import { of, throwError } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { HttpHeaders } from '@angular/common/http';
@@ -137,7 +137,7 @@ export class SharedService {
   
     const url = `https://padelback20.onrender.com/api/login/users/${user}`;
   
-    
+
     return this.http.post(url, { token }).pipe(
       catchError(error => {
         console.error('Error in setTokenToUser:', error);
@@ -145,5 +145,29 @@ export class SharedService {
       })
     );
   }
+
+  obtenerNombresDeUsuario(): Observable<string[]> {
+    return this.http.get<string[]>('http://localhost:3000/api/players/usernames')
+    .pipe(
+      catchError(error => {
+        console.error('Error:', error);
+        return throwError(error);
+      })
+    );
+  }
+
+  guardarLiga(liga: any): Observable<any> {
+    return this.http.post('http://localhost:3000/api/players/liga', liga).pipe(
+      tap(() => {
+        console.log('Liga guardada con éxito');
+      }),
+      catchError(error => {
+        console.error('Error al guardar la liga:', error);
+        return throwError(error);
+      })
+    );
+  }
+  
+
 
 }
