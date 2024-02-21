@@ -25,7 +25,9 @@ import { AuthInterceptor } from './auth.interceptor';
 import { PanelusuarioComponent } from './panelusuario/panelusuario.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RandomMatchComponent } from './random-match/random-match.component';
-
+import { LigaComponent } from './liga/liga.component';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatOptionModule } from '@angular/material/core';
 
 
 
@@ -44,7 +46,9 @@ const routes: Routes = [
     MainComponent,
     LoginComponent,
     PanelusuarioComponent,
-    RandomMatchComponent
+    RandomMatchComponent,
+    LigaComponent
+    
   ],
   imports: [
     BrowserModule,
@@ -56,7 +60,10 @@ const routes: Routes = [
     MatNativeDateModule,
     MatFormFieldModule,
     MatInputModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatAutocompleteModule,
+    MatOptionModule
+    
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },

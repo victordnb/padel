@@ -8,6 +8,7 @@ import { LoginComponent } from './login/login.component';
 import { PanelusuarioComponent } from './panelusuario/panelusuario.component';
 import { RandomMatchComponent } from './random-match/random-match.component';
 import { AuthGuard } from './auth-guard.service';
+import { LigaComponent } from './liga/liga.component';
 
 const routes: Routes = [
   { path: 'multipista', component: MultipistaComponent, canActivate: [AuthGuard] },
@@ -17,6 +18,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'mi-perfil', component: PanelusuarioComponent, canActivate: [AuthGuard] },
   { path: 'random-match', component: RandomMatchComponent, canActivate: [AuthGuard] },
+  { path: 'liga', component: LigaComponent, canActivate: [AuthGuard]},
 ];
 
 @NgModule({

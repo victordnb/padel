@@ -1,0 +1,35 @@
+<p>liga works!</p>
+
+<div class="liga">
+    <button (click)="mostrarFormularioCrearLiga()">Crear Liga</button>
+    <button>Seleccionar Liga</button>
+  
+    <form *ngIf="mostrarFormulario" (ngSubmit)="guardarLiga()">
+      
+      <mat-form-field>
+        <mat-label>Nombre de la liga</mat-label>
+        <input matInput [formControl]="nombreLigaControl" placeholder="Introduce el nombre de la liga">
+        <mat-error *ngIf="nombreLigaControl.invalid">Este campo es obligatorio</mat-error>
+      </mat-form-field>
+
+      <div>
+        <label for="numParticipantes">Número de participantes:</label>
+        <select id="numParticipantes" [(ngModel)]="numParticipantes" name="numParticipantes" (change)="actualizarParticipantes()" [disabled]="nombreLigaControl.invalid">
+            <option *ngFor="let num of posiblesParticipantes" [value]="num">{{num}}</option>
+        </select>
+      </div>
+
+      <div *ngFor="let control of arrayParticipantes; let i = index">
+        <mat-form-field>
+          <input matInput type="text" [matAutocomplete]="auto" [formControl]="control">
+          <mat-autocomplete #auto="matAutocomplete">
+            <mat-option *ngFor="let option of filteredOptions[i] | async" [value]="option">
+              {{option}}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+      </div>
+  
+      <button type="submit">Finalizar/Guardar</button>
+    </form>
+</div>
