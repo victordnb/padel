@@ -147,7 +147,7 @@ export class SharedService {
   }
 
   obtenerNombresDeUsuario(): Observable<string[]> {
-    return this.http.get<string[]>('http://localhost:3000/api/players/usernames')
+    return this.http.get<string[]>('https://padelback20.onrender.com/api/players/usernames')
     .pipe(
       catchError(error => {
         console.error('Error:', error);
@@ -157,7 +157,7 @@ export class SharedService {
   }
 
   guardarLiga(liga: any): Observable<any> {
-    return this.http.post('http://localhost:3000/api/players/liga', liga).pipe(
+    return this.http.post('https://padelback20.onrender.com/api/players/liga', liga).pipe(
       tap(() => {
         console.log('Liga guardada con éxito');
       }),
