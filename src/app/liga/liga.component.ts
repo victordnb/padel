@@ -1,10 +1,12 @@
 import { Component } from '@angular/core';
 import { SharedService } from '../shared.service';
 import { FormControl, Validators } from '@angular/forms';
-import { Observable } from 'rxjs';
-import { map, startWith } from 'rxjs/operators';
+import { Observable, of } from 'rxjs';
+import { catchError, map, startWith } from 'rxjs/operators';
 import { filter } from 'rxjs/operators';
 import { tap } from 'rxjs/operators';
+import { Router } from '@angular/router';
+import { Liga } from '../interface/liga';
 
 @Component({
   selector: 'app-liga',
@@ -19,9 +21,10 @@ export class LigaComponent {
   nombresDeUsuario: string[] = [];
   filteredOptions: Observable<string[]>[] = [];
   nombreLigaControl = new FormControl('', Validators.required);
+  ligas: Liga[] = [];
+  displayedColumns: string[] = ['nombre', 'participantes'];
 
-
-  constructor(private sharedService: SharedService) { }
+  constructor(private sharedService: SharedService, private router: Router) { }
 
   mostrarFormularioCrearLiga() {
     this.mostrarFormulario = true;
@@ -31,6 +34,24 @@ export class LigaComponent {
     }, error => {
       console.error('Error:', error);
     }); 
+  }
+
+  ngOnInit() {
+    const usernameDelUsuario = localStorage.getItem('user'); 
+    if (usernameDelUsuario) {
+      this.sharedService.obtenerLigasPorUsername(usernameDelUsuario)
+        .pipe(
+          catchError(error => {
+            console.error('Error al obtener las ligas por username', error);
+            return of([]); // Retorna un observable vacío para que el flujo continúe
+          })
+        )
+        .subscribe(ligas => {
+          this.ligas = ligas;
+        });
+    } else {
+      console.log('No se encontró el nombre de usuario en el localStorage');
+    }
   }
 
   trackByIndex(index: number): number {
@@ -85,4 +106,9 @@ export class LigaComponent {
 
     return this.nombresDeUsuario.filter(option => option.toLowerCase().includes(filterValue));
   }
+
+  verDetallesDeLiga(ligaId: string) {
+    this.router.navigate(['/liga', ligaId]);
+  }
+
 }

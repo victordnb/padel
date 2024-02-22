@@ -4,6 +4,7 @@ import { catchError, map } from 'rxjs/operators';
 import { of, throwError } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { HttpHeaders } from '@angular/common/http';
+import { Liga } from './interface/liga'; 
 
 
 import { Observable } from 'rxjs';
@@ -118,7 +119,7 @@ export class SharedService {
       return this.http.post(`https://padelback20.onrender.com/api/login`, user, { responseType: 'json' }).pipe(
       tap((response: any) => {
         localStorage.setItem('token', response.token);
-        localStorage.setItem('user', JSON.stringify(response.user));
+        localStorage.setItem('user', response.user.username);
       })
     );
   } 
@@ -166,6 +167,18 @@ export class SharedService {
         return throwError(error);
       })
     );
+  }
+
+  obtenerLigaPorNombre(nombre: string): Observable<Liga> {
+    return this.http.get<Liga>(`https://padelback20.onrender.com/api/players/liga/${nombre}`);
+  }
+
+  obtenerLigasPorUsername(username: string): Observable<Liga[]> {
+    let name = username;
+    //quitarles las comillas:
+    name = name.replace(/"/g, "");
+
+    return this.http.get<Liga[]>(`https://padelback20.onrender.com/api/players/liga/usuario/${name}`);
   }
   
 
