@@ -28,6 +28,8 @@ import { RandomMatchComponent } from './random-match/random-match.component';
 import { LigaComponent } from './liga/liga.component';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatOptionModule } from '@angular/material/core';
+import { MatTableModule } from '@angular/material/table';
+
 
 
 
@@ -62,7 +64,8 @@ const routes: Routes = [
     MatInputModule,
     ReactiveFormsModule,
     MatAutocompleteModule,
-    MatOptionModule
+    MatOptionModule,
+    MatTableModule
     
   ],
   providers: [

@@ -15,6 +15,9 @@ export class HeaderComponent implements OnInit {
   ngOnInit() {
     this.username = localStorage.getItem('user');
   }
+  verDetallesDeLiga(ligaId: string) {
+    this.router.navigate(['/liga', ligaId]);
+  }
 
   logout() {
     localStorage.clear(); // Borra todo el almacenamiento local
