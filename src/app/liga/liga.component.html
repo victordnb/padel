@@ -1,8 +1,7 @@
-<p>liga works!</p>
-
 <div class="liga">
+    <h1>Bienvenido a tus Ligas {{usernamelocal}}</h1>
+
     <button (click)="mostrarFormularioCrearLiga()">Crear Liga</button>
-    <button>Seleccionar Liga</button>
   
     <form *ngIf="mostrarFormulario" (ngSubmit)="guardarLiga()">
       
@@ -33,7 +32,6 @@
       <button type="submit">Finalizar/Guardar</button>
     </form>
     <!-- linea separador: -->
-    <hr>
     
     <!-- <ul>
       <li *ngFor="let liga of ligas" (click)="verDetallesDeLiga(liga.nombre)">
