@@ -30,6 +30,13 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatOptionModule } from '@angular/material/core';
 import { MatTableModule } from '@angular/material/table';
 
+import { MatButtonModule } from '@angular/material/button';
+import { MatDividerModule } from '@angular/material/divider';
+
+import { MatDialogModule } from '@angular/material/dialog';
+
+
+
 
 
 
@@ -49,7 +56,8 @@ const routes: Routes = [
     LoginComponent,
     PanelusuarioComponent,
     RandomMatchComponent,
-    LigaComponent
+    LigaComponent,
+    
     
   ],
   imports: [
@@ -65,7 +73,10 @@ const routes: Routes = [
     ReactiveFormsModule,
     MatAutocompleteModule,
     MatOptionModule,
-    MatTableModule
+    MatTableModule,
+    MatButtonModule,
+    MatDividerModule,
+    MatDialogModule
     
   ],
   providers: [

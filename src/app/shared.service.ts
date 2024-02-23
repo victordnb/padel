@@ -182,5 +182,13 @@ export class SharedService {
   }
   
 
+  editarPuntos(liga: Liga, participante: {username: string, points: number}): Observable<any> {
+    console.log('liga: ', liga);
+    console.log('participante: ', participante);
+    const url = `https://padelback20.onrender.com/api/players/liga/${liga.nombre}`;
+    return this.http.put(url, participante);
+  }
+  
+
 
 }

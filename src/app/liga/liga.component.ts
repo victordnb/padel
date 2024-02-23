@@ -7,6 +7,8 @@ import { filter } from 'rxjs/operators';
 import { tap } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { Liga } from '../interface/liga';
+import { MatDialog } from '@angular/material/dialog';
+
 
 @Component({
   selector: 'app-liga',
@@ -23,8 +25,9 @@ export class LigaComponent {
   nombreLigaControl = new FormControl('', Validators.required);
   ligas: Liga[] = [];
   displayedColumns: string[] = ['nombre', 'participantes'];
+  ligaSeleccionada: Liga | null = null;
 
-  constructor(private sharedService: SharedService, private router: Router) { }
+  constructor(private sharedService: SharedService, private router: Router, private dialog: MatDialog) { }
 
   mostrarFormularioCrearLiga() {
     this.mostrarFormulario = true;
@@ -107,8 +110,32 @@ export class LigaComponent {
     return this.nombresDeUsuario.filter(option => option.toLowerCase().includes(filterValue));
   }
 
-  verDetallesDeLiga(ligaId: string) {
-    this.router.navigate(['/liga', ligaId]);
+  verDetallesDeLiga(ligaId: string): void {
+    const ligaSeleccionada = this.ligas.find(liga => liga.nombre === ligaId) || null;
+    this.ligaSeleccionada = this.ligaSeleccionada === ligaSeleccionada ? null : ligaSeleccionada;
   }
-
+  editarPuntos(participante: any): void {
+    participante.editing = true;
+    participante.editValue = participante.points;
+  }
+  
+  guardarPuntos(participante: any): void {
+    participante.points = participante.editValue;
+    participante.editing = false;
+  
+    if (this.ligaSeleccionada === null) {
+      console.error('No se ha seleccionado ninguna liga');
+      return;
+    }
+  
+    this.sharedService.editarPuntos(this.ligaSeleccionada, participante).subscribe(
+      response => {
+        console.log('Puntos actualizados con éxito');
+        
+      },
+      error => {
+        console.error('Hubo un error al actualizar los puntos', error);
+      }
+    );
+  }
 }
