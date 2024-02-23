@@ -1,5 +1,99 @@
+/* liga.component.css */
+
+.liga {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  margin: auto;
+  padding: 20px;
+  background-color: #f5f5f5; /* grey 100 */
+  color: #1976d2; /* blue 700 */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  overflow: auto;
+}
+
+.liga h1 {
+  color: #1976d2; /* blue 700 */
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 2em;
+  font-weight: bold;
+  text-transform: uppercase;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.liga * {
+  width: 100%; /* Asegura que todos los elementos hijos de .liga tengan un ancho del 100% */
+}
+
+.liga button {
+  margin: 10px 0;
+  padding: 10px 20px;
+  background-color: #007BFF;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.liga button:hover {
+  background-color: #0056b3;
+}
+
+.liga form {
+  margin-top: 20px;
+}
+
+.liga form mat-form-field {
+  margin-bottom: 20px;
+}
+
+.liga form button[type="submit"] {
+  background-color: #28a745;
+}
+
+.liga form button[type="submit"]:hover {
+  background-color: #218838;
+}
+
+.nombre-liga {
+  cursor: pointer;
+  color: #007BFF;
+}
+
 .nombre-liga:hover {
-    cursor: pointer;
-    color: blue;
-    text-decoration: underline;
-  }
+  text-decoration: underline;
+}
+
+.ligaSeleccionada {
+  margin-top: 20px;
+}
+
+.ligaSeleccionada h2 {
+  color: #1976d2; /* blue 700 */
+  text-align: center;
+  font-size: 2.5em;
+  font-weight: bold;
+  text-transform: uppercase;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.ligaSeleccionada ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.ligaSeleccionada ul li {
+  margin-bottom: 10px;
+}
+
+.ligaSeleccionada ul li p {
+  margin: 0;
+}
+
+.ligaSeleccionada ul li button {
+  margin-top: 5px;
+}

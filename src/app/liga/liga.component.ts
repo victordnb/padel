@@ -16,6 +16,7 @@ import { MatDialog } from '@angular/material/dialog';
   styleUrls: ['./liga.component.css']
 })
 export class LigaComponent {
+  usernamelocal = localStorage.getItem('user');
   mostrarFormulario = false;
   numParticipantes = 0;
   posiblesParticipantes = Array.from({length: 10}, (_, i) => i + 1); // Para seleccionar de 1 a 10 participantes
@@ -79,6 +80,10 @@ export class LigaComponent {
   
     this.sharedService.guardarLiga(liga).subscribe(response => {
       console.log('Liga guardada:', response);
+      alert('Liga guardada con éxito');
+      this.router.navigate(['/ligas']);
+      //reload window:
+      window.location.reload();
     }, error => {
       console.error('Error:', error);
     });
