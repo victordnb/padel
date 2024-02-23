@@ -51,7 +51,7 @@
       <!-- Columna de nombre de la liga -->
       <ng-container matColumnDef="nombre">
         <th mat-header-cell *matHeaderCellDef> Nombre de la liga </th>
-        <td mat-cell *matCellDef="let liga"> {{liga.nombre}} </td>
+        <td mat-cell *matCellDef="let liga" (click)="verDetallesDeLiga(liga.nombre)" class="nombre-liga"> {{liga.nombre}} </td>
       </ng-container>
     
       <!-- Columna de participantes -->
@@ -63,9 +63,28 @@
           </div>
         </td>
       </ng-container>
-    
+      
+      
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="verDetallesDeLiga(row.nombre)"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
+
+
+    <div *ngIf="ligaSeleccionada">
+      <h2>{{ ligaSeleccionada.nombre }}</h2>
+      <ul>
+        <li *ngFor="let participante of ligaSeleccionada.participantes">
+          <p>Username: {{ participante.username }}</p>
+          <div *ngIf="!participante.editing; else editing">
+            <p>Puntos: {{ participante.points }}</p>
+            <button (click)="editarPuntos(participante)">Editar</button>
+          </div>
+          <ng-template #editing>
+            <input [(ngModel)]="participante.editValue">
+            <button (click)="guardarPuntos(participante)">Guardar</button>
+          </ng-template>
+        </li>
+      </ul>
+    </div>
 
 </div>
